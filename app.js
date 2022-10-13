@@ -1,11 +1,17 @@
 const express = require("express")
 const app = express()
-const dbConnection = require("./config_file/db_connect")
+const dbConnection = require("./src/config_file/db_connect")
 // DB Livery Import 
-const mongoose = require("mongoose")
+const router = require("./src/routes/api")
 
 // MongoDb Connection 
-
 dbConnection()
+// Router Location SetUp
+app.use("/api/v1", router)
+// Undefined Route
+app.use("*", (req, res) => {
+    res.status(404).json({ status: "SORRY", message: "WE CANNOT FIND YOUR ROUTES" })
+})
+
 
 module.exports = app;

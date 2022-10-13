@@ -1,7 +1,8 @@
 const mongoose = require("mongoose")
-const db_name = "blog_api_api";
-const OPTION = { user: "", pass: "", autoIndex: true }
-const URI = `mongodb://localhost:27017/${db_name}`
+require("dotenv").config()
+const db_name = process.env.DB_NAME;
+const OPTION = { user: process.env.DB_USER, pass: process.env.DB_PASS, autoIndex: true }
+const URI = `${process.env.DB_URI}${db_name}`
 const dbConnection = async () => {
     try {
         await mongoose.connect(URI, OPTION, () => {
