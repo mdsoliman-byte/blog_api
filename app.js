@@ -1,9 +1,11 @@
 const express = require("express")
+const bodyParser = require("body-parser")
 const app = express()
 const dbConnection = require("./src/config_file/db_connect")
 // DB Livery Import 
 const router = require("./src/routes/api")
-
+// body-parser implement 
+app.use(bodyParser.json())
 // MongoDb Connection 
 dbConnection()
 // Router Location SetUp
